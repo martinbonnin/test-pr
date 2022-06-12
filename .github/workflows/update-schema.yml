@@ -1,0 +1,13 @@
+name: Update GraphQL schema
+on:
+  pull_request
+
+jobs:
+  update:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: apollographql/update-graphql-schema@main
+        with:
+          endpoint: "https://kiki-conf.ew.r.appspot.com/graphql"
+          schema: "shared/src/commonMain/graphql/schema.graphqls"
