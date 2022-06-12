@@ -1,0 +1,144 @@
+enum Conference {
+  DroidConfSf
+
+  DevFestLille
+}
+
+type Configuration {
+  timezone: String!
+}
+
+"""
+A type representing a formatted kotlinx.datetime.Instant
+"""
+scalar Instant
+
+type PageInfo {
+  endCursor: String!
+
+  hasNextPage: Boolean!
+
+  hasPreviousPage: Boolean!
+
+  startCursor: String!
+}
+
+type Partner {
+  logoUrl: String!
+
+  name: String!
+
+  order: Int!
+
+  url: String!
+}
+
+type PartnerGroup {
+  order: Int!
+
+  partners: [Partner!]!
+
+  title: String!
+}
+
+type Query {
+  source(conference: Conference!): Source!
+}
+
+type Room {
+  capacity: Int
+
+  id: String!
+
+  name: String!
+}
+
+type Session {
+  description: String!
+
+  endInstant: Instant!
+
+  id: String!
+
+  language: String
+
+  startInstant: Instant!
+
+  tags: [String!]!
+
+  title: String!
+
+  room: Room!
+
+  speakers: [Speaker!]!
+}
+
+type SessionConnection {
+  edges: [SessionEdge!]!
+
+  pageInfo: PageInfo!
+
+  totalCount: Int!
+}
+
+type SessionEdge {
+  cursor: String!
+
+  node: Session!
+}
+
+type Social {
+  icon: String!
+
+  link: String!
+
+  name: String!
+}
+
+type Source {
+  config: Configuration!
+
+  partnerGroups: [PartnerGroup!]!
+
+  rooms: [Room!]!
+
+  session(id: String!): Session!
+
+  sessions(first: Int, after: String): SessionConnection!
+
+  speakers: [Speaker!]!
+
+  venue(id: String!): Venue!
+}
+
+type Speaker {
+  bio: String!
+
+  company: String
+
+  id: String!
+
+  name: String!
+
+  photoUrl: String
+
+  socials: [Social!]!
+}
+
+type Venue {
+  address: String
+
+  coordinates: String
+
+  description: String!
+
+  descriptionFr: String!
+
+  imageUrl: String!
+
+  name: String!
+}
+
+schema {
+  query: Query
+}
