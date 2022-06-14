@@ -4,9 +4,6 @@ enum Conference {
   DevFestLille
 }
 
-type Configuration {
-  timezone: String!
-}
 
 """
 A type representing a formatted kotlinx.datetime.Instant
