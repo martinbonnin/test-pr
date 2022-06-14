@@ -7,6 +7,12 @@ enum Conference {
 type Configuration {
   timezone: String!
 }
+
+"""
+A type representing a formatted kotlinx.datetime.Instant
+"""
+scalar Instant
+
 type PageInfo {
   endCursor: String!
 
